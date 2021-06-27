@@ -1,0 +1,77 @@
+{% extends 'layout/main_layout.html' %}
+{% block body %}
+
+
+<div class="container pt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-column align-items-center text-center">
+            {% if not user.thumbnail %}
+            <img src="/img/profile/blank.png" alt="Admin" class="rounded-circle" width="150" height="150" style="object-fit:cover">
+            {% else %}
+            <img src="/img/user/profile/{{user.thumbnail}}" alt="Admin" class="rounded-circle" width="150" height="150" style="object-fit:cover">
+            {% endif %}
+
+            <div class="mt-3">
+              <h4>{{user.id}}</h4>
+              <span class="badge rounded-pill bg-primary text-white px-2">Followers</span>
+              <span class="text-sm">1,000</span><br>
+              <span class="badge rounded-pill bg-primary text-white px-2">Followings</span>
+              <span class="text-sm">1,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Name</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{user.name}}
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Email</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{user.email}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Address</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {% if user.address %}
+              {{user.address}}
+              {% else %}
+              <span class="text-muted alert-warning font">Add your address</span>
+              {% endif %}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <a class="btn btn-info " href="/member/mypage_edit.html">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

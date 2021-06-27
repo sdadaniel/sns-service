@@ -1,0 +1,49 @@
+{% extends 'layout/main_layout.html' %}
+
+
+{% block head_script %}
+<link rel="stylesheet" href="/css/layout/style.css">
+{% endblock %}
+
+
+{% block body %}
+<div class="container py-3" id="main">
+  {% for item in contents %}
+  <div class="row justify-content-center mb-3">
+    <div class="col-md-8 col-lg-6 col-sm-12">
+      <div class="card">
+        <div class="card-header ">
+          <div class="row">
+            <div class="col d-flex align-items-center">
+              <p class="m-0">{{item.category}}</p>
+            </div>
+            <div class="col text-right d-flex align-items-center ">
+              <a href="#" class="ml-auto mr-2">
+                <span style="width: 30px;height:30px;overflow: hidden;border-radius: 50px;display: inline-block;">
+                  {%if item.User.thumbnail %}
+                  <img src="/img/user/profile/sdadaniel.jpg" alt="user" style="width:100%" class="img-circle">
+                  {% else %}
+                  <img src="/img/profile/blank.png" alt="user" style="width:100%" class="img-circle">
+                  {% endif %}
+                </span>
+              </a>
+              <p class="h6 m-0">{{item.User.id}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text layout-overtext">{{item.description}}</p>
+        </div>
+        <div class="card-footer text-muted ">
+          {{item.createdAt}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+
+  {% include "components/pagenation.html" %}
+
+  {% endblock %}

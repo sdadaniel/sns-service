@@ -1,0 +1,33 @@
+{% extends 'layout/main_layout.html' %}
+{% block body %}
+
+<div class="row justify-content-center">
+  <div class="col-xl-5 col-lg-6 col-md-9">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="p-5 text-center">
+              <div class="text-center mb-3">
+                <h1 class="h4 text-gray-900 mb-2">Congraulation!</h1>
+                <p class="mb-3">Welcome to Our Service {{id}}</p>
+                <p class="mb-0">Your Id: {{id}}</p>
+              </div>
+              <div style="height:300px" class="bg-password-image mb-3"></div>
+              <a href="/" class="btn btn-primary btn-sm">HOME</a>
+              <a href="/auth/login.html" class="btn btn-secondary btn-sm">LOGIN</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+{% endblock %}
