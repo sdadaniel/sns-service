@@ -9,6 +9,8 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 dotenv.config();
 const passportConfig = require("./passport");
+const redis = require("redis")
+const RedisStore = require("connect-redis")(session)
 
 /* 로그인 예제 */
 const {
@@ -44,7 +46,7 @@ class App {
 
     this.app.use(morgan('dev'));
     this.app.use(express.static(path.join(__dirname, 'public')));
-    this.app.use("/img",express.static(path.join(__dirname, 'uploads')));
+    this.app.use("/img", express.static(path.join(__dirname, 'uploads')));
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({
@@ -54,10 +56,17 @@ class App {
 
     this.app.use(cookiePareser(process.env.COOKIE_SECRET))
     this.app.use(flash());
+
+    const redisClient = redis.createClient({
+      url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+      password: process.env.REDIS_PASSWORD
+    })
+
     this.app.use(session({
       resave: false,
       saveUninitialized: 0,
       secret: process.env.COOKIE_SECRET,
+      store: new RedisStore({client:redisClient})
     }));
 
     this.app.use(passport.initialize());

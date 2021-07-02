@@ -1,6 +1,28 @@
 <header>
+
+  <style>
+    .search-bar {
+      background: rgba(255, 255, 255, 0.05);
+      ;
+      border-radius: 10px;
+    }
+
+    .search-bar input.search {
+      background: none;
+      color: blanchedalmond;
+      border: none;
+      font-size: 12px;
+
+    }
+
+    .search-bar input.search:focus {
+
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: rgb(233, 233, 233);
+    }
+  </style>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
+    <div class="container-fluid position-relative">
       <a class="navbar-brand" style="filter: brightness(0) invert(1);" href="/"><img src="/img/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +41,28 @@
             <a class="nav-link" href="#">Community</a>
           </li>
         </ul>
+
+
+
+
+        <ul class="navbar-nav search-bar position-absolute" style="left:50%;transform: translateX(-50%);">
+          <li class="nav-item">
+            <form class="input-group mb-0" id="search" method="get" action="/search">
+              <input type="search" class="form-control rounded search " id="search-input" name="keyword"
+                placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+
+              <button type="button" class="btn search-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                  </path>
+                </svg>
+              </button>
+            </form>
+          </li>
+        </ul>
+
         {% if not user %}
 
         <ul class="navbar-nav ml-auto">
@@ -30,25 +74,21 @@
           </li>
         </ul>
         {% else %}
-
-
         <div class="d-flex ml-auto align-items-center">
           <a href="/member/mypage.html" class="ml-auto mr-2">
             <span style="width: 30px;height:30px;overflow: hidden;border-radius: 50px;display: inline-block;">
-
-              {% if not user.thumbnail %}
-              <img src="/img/profile/blank.png" alt="user" style="width:100%" class="img-circle">
-              {% else %}
-              <img src="/img/user/profile/{{user.thumbnail}}" alt="user" style="width:100%" class="img-circle">
-              {% endif %}
+              <img src="{{user.thumbnail}}" alt="user" style="width:100%" class="img-circle">
             </span>
           </a>
           <strong class="text-white mr-1"> {{user.id}}님</strong>
         </div>
-
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="/member/post.html">Post</a>
+          </li>
+          <li class="nav-item position-relative" id="msg">
+            <a class="nav-link" href="#">Message</a>
+
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/member/mypage.html">Mypage</a>
@@ -59,16 +99,80 @@
         </ul>
         {% endif%}
 
+        {% include "layout/components/components/messenger_list.html" %}
+        {% include "layout/components/components/chatting.html" %}
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+          $(".search-button").on("click", () => {
+            if ($("#search-input").val().trim() == "") {
+              alert("검색어를 입력해주세요")
+            } else {
+              $("#search").submit()
+            }
+          })
+          // $(document).ready(() => {
+          //   socket_connection()
+            
+          //   messenger_toogle()
+          // })
+
+          // const socket_connection = () => {
+          //   const socket = io.connect("http://localhost:3000", {
+          //     path: `/socket.io`
+          //   });
+
+          // }
 
 
 
+          // const messenger_toogle = () => {
+          //   $("#msg").bind("click", async function (e) {
+          //     !$(".messenger_list").hasClass("get-msg") && await get_list()
+          //     $(".messenger_list").toggle()
+          //   });
+
+          //   const get_list = async function () {
+          //     $(".messenger_list").addClass("get-msg")
+          //     var url = "http://localhost:3000/api" + "/user/followings";
+          //     const result = await axios.get(url)
+
+          //     for (i = 0; i < result.data.length; i++) {
+          //       $msgItem = $("<div class='pl-0 pb-2  mb-2 d-flex align-items-center msg-item btn'>");
+          //       $thumbnailBox = $("<div class='mr-2 thumbnail-box'>")
+          //       $thumbnailBox.prepend(`<img src=${result.data[i].thumbnail} alt='thumbnail' class='img-circle'>`)
+          //       $id = $(`<span class='text-white'>${result.data[i].id}</span>`)
+          //       $msgItem.prepend($id)
+          //       $msgItem.prepend($thumbnailBox)
+          //       $(".msg-list").prepend($msgItem)
+          //     }
+
+          //     $(".messenger_list .msg-item").on("click", async (e) => {
+          //       $(".messenger_list").toggle()
 
 
-        {# <form class="d-flex m-0">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> #}
+          //       const url = "http://localhost:3000/api/user/chatting";
+          //       const method = "post"
+          //       const data = {
+          //         targetId: $(e.target.closest(".msg-item")).text()
+          //       }
+          //       console.log(data)
 
+          //       const result = await axios({
+          //         url,
+          //         method,
+          //         data
+          //       })
+          //       console.log(result.data)
+
+          //       $(".chatting").toggle()
+          //     })
+
+          //   }
+
+
+          // }
+        </script>
       </div>
     </div>
   </nav>

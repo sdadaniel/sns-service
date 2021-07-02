@@ -49,6 +49,10 @@ router.post("/mypage_edit.html", upload.single("thumbnail"), ctrl.post_mypage_ed
 router.get("/post.html", ctrl.get_post)
 router.post("/post.html", ctrl.post_post)
 
+router.get("/post/write.html", ctrl.get_write)
+
+router.get("/post/detail.html/:idNumber", ctrl.get_detail)
+
 
 
 

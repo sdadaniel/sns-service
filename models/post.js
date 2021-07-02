@@ -16,8 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(2000),
       allowNull: true
+    },
+    stars: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     },
   }, {
     tableName: 'post',

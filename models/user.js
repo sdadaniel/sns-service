@@ -15,12 +15,16 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.STRING,
       allowNull: false,
+      primaryKey: true
+      
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
+
     },
-    
+
     password: {
       type: DataTypes.STRING,
       allowNull: false
@@ -31,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     thumbnail: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      defaultValue: "/img/profile/blank.png"
     },
   }, {
     tableName: 'user',
@@ -49,7 +54,9 @@ module.exports = (sequelize, DataTypes) => {
       as: "Followings",
       through: "Follow"
     });
-     db.User.hasMany(db.Post)
+
+    db.User.hasMany(db.Post)
+    
   }
   return User;
 };

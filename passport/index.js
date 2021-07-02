@@ -42,7 +42,8 @@ module.exports = () => {
   }, authenticateUser))
   passport.serializeUser((user, done) => done(null, user.id))
   passport.deserializeUser(async (id, done) => {
-    var api_path = `http://localhost:3000` + "/api/user/id/";
+
+    var api_path = process.env.API_ROOT + "/user/id/";
     const exUser = await axios.get(api_path + id);
     return done(null, exUser.data)
   })
