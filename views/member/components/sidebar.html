@@ -1,0 +1,112 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion position-fixed border-top pb-2"
+  id="accordionSidebar">
+
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+    <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">Welcome</div>
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider mb-3">
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Posts
+  </div>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link" href="/member/post.html">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>All</span></a>
+  </li>
+
+
+  <!-- Nav Item - Utilities Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#post_design" aria-expanded="true"
+      aria-controls="post_design">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>Design
+        {% if post_list.design.length > 0 %}
+        <span class="badge badge-light px-2 ml-1" style="font-size:10px">{{post_list.design.length}}</span>
+        {% endif %}
+      </span>
+    </a>
+    <div id="post_design" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      {% if post_list.design.length > 0 %}
+      <div class="bg-white py-2 collapse-inner rounded">
+        {% for item in post_list.design %}
+        <a class="collapse-item" data-idnumber="{{item.idNumber}}" href="/member/post/detail.html/{{item.idNumber}}">{{item.title}}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </li>
+
+  <!-- Nav Item - Utilities Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#post_marketing" aria-expanded="true"
+      aria-controls="post_marketing">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>Marketing
+        {% if post_list.marketing.length > 0 %}
+        <span class="badge badge-light px-2 ml-1" style="font-size:10px">{{post_list.marketing.length}}</span>
+        {% endif %}
+      </span>
+    </a>
+    <div id="post_marketing" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      {% if post_list.marketing.length > 0 %}
+      <div class="bg-white py-2 collapse-inner rounded">
+        {% for item in post_list.marketing %}
+        <a class="collapse-item" data-idnumber="{{item.idNumber}}" href="/member/post/detail.html/{{item.idNumber}}">{{item.title}}</a>
+        {% endfor %}
+      </div>
+      {% endif%}
+    </div>
+  </li>
+
+  <!-- Nav Item - Utilities Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#post_programming" aria-expanded="true"
+      aria-controls="post_programming">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>programming
+        {% if post_list.programming.length > 0 %}
+        <span class="badge badge-light px-2 ml-1" style="font-size:10px">{{post_list.programming.length}}</span>
+        {% endif %}
+      </span>
+    </a>
+    <div id="post_programming" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      {% if post_list.programming.length > 0 %}
+      <div class="bg-white py-2 collapse-inner rounded">
+        {% for item in post_list.programming %}
+        <a class="collapse-item" data-idnumber="{{item.idNumber}}" href="/member/post/detail.html/{{item.idNumber}}">{{item.title}}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </li>
+
+
+
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Write Post
+  </div>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link" href="/member/post/write.html">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Write</span></a>
+  </li>
+</ul>
+<!-- End of Sidebar -->

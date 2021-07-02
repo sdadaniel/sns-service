@@ -1,0 +1,117 @@
+<div class="chatting bg-light position-fixed p-0 shadow-sm position-relative" style="display: none;">
+  <div class="chatting-user pl-0 pb-2  mb-2 d-flex align-items-center msg-item btn border-bottom rounded-0">
+    <div class="mr-2 thumbnail-box p-1">
+      <img src="/img/user/profile/sdadaniel.png" alt="thumbnail" class="img-circle">
+    </div>
+    <span class="text-small">sdadaniel</span>
+    <button type="button" class="close ml-auto" aria-label="Close" onclick="$('.chatting').toggle()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="msg-area">
+    <div class="msg-item">
+      <div class="img">
+        <img src="/img/profile/blank.png" alt="user" style="width:100%" class="img-circle">
+      </div>
+      <div class="txt">
+        <p>asd asd asd asd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asd
+          sdfsdf
+        </p>
+      </div>
+    </div>
+
+
+    <div class="msg-item my" style="text-align: right;">
+      <div class="txt mytxt">
+        <p>asd asd asd asd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asd</p>
+      </div>
+    </div>
+
+
+    <div class="msg-item ">
+      <div class="img">
+        <img src="/img/profile/blank.png" alt="user" style="width:100%" class="img-circle">
+      </div>
+      <div class="txt">
+        <p>asd asd asd asd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asdasd asd asd</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group inputGroup p-1 position-absolute m-0">
+    <input type="text" class="form-control" placeholder="Write Message" aria-label="Recipient's username"
+      aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" >Send</button>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .chatting {
+    width: 250px;
+    height: 350px;
+    bottom: 0px;
+    right: 80px;
+    z-index: 1
+  }
+
+  .chatting .thumbnail-box {
+    width: 30px;
+  }
+
+  .chatting .thumbnail-box img {
+    width: 100%
+  }
+
+  .chatting .msg-area {
+    height: 252px;
+    overflow-y: scroll;
+  }
+
+  .chatting .msg-area .msg-item {
+    margin-bottom: 15px;
+  }
+
+  .chatting .msg-area .msg-item.my {
+    text-align: right;
+  }
+
+  .chatting .msg-area .msg-item.my .txt {
+    text-align: left;
+    background-color: rgb(0, 132, 255);
+  }
+
+  .chatting .msg-area .msg-item .img {
+    display: inline-block;
+    width: 30px;
+    background-color: blue;
+    vertical-align: bottom;
+    border-radius: 15px;
+    overflow: hidden;
+
+  }
+
+  .chatting .msg-area .msg-item .txt {
+    display: inline-block;
+    width: 60%;
+    border-radius: 10px;
+    background: #999;
+    padding: 10px;
+    font-size: .9375rem;
+    line-height: 1.0;
+    font-weight: 100;
+    color: #fff;
+  }
+
+  .chatting .msg-area .msg-item .txt p {
+    margin: 0px
+  }
+
+
+  .chatting .inputGroup {
+    bottom: 0px
+  }
+</style>

@@ -1,0 +1,36 @@
+<div class="messenger_list bg-dark position-fixed border-top p-2 shadow-lg" data-toggle="false" style="display:none">
+  <div class="msg-title">
+    <p class="h4 font-weight-bold text-light mb-1">Messenger</p>
+    <p class="h6  text-light mb-3 text-muted">Add other freinds to chat</p>
+  </div>
+
+  <div class="d-flex flex-column msg-list">
+  </div>
+</div>
+
+<style>
+  .messenger_list {
+    box-shadow: 0 2rem 2rem rgba(0, 0, 0, .8);
+    z-index: 2;
+    height: 100vh;
+    width: 300px;
+    right: 0px;
+    top: 64px;
+  }
+
+
+
+  .messenger_list .msg-list {}
+
+  .messenger_list .msg-list .msg-item {}
+
+  .messenger_list .msg-list .msg-item .thumbnail-box {
+    width: 30px;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  .messenger_list .msg-list .msg-item .thumbnail-box img {
+    width: 100%
+  }
+</style>

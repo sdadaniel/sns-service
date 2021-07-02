@@ -1,0 +1,16 @@
+{% extends 'layout/main_layout.html' %}
+
+{% block head_script %}
+<link rel="stylesheet" href="/css/module/thumbnail/module-thumbnail.css">
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container py-3" id="main">
+{% include "components/thumb/thumb-small.html" %}
+{% include "components/pagenation.html" %}
+</div>
+
+
+{% endblock %}

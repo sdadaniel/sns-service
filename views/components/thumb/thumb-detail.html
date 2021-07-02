@@ -1,0 +1,53 @@
+<div class="row justify-content-center mb-3 card-content thumb-detail thumb-common">
+  <div class="col-md-8 col-lg-10 col-sm-12">
+    <div class="card shadow-sm">
+      <div class="card-header ">
+        <div class="row">
+          <div class="col d-flex align-contents-center">
+            <p class="m-0">{{content.category}}</p>
+          </div>
+          <div class="col text-right d-flex align-contents-center">
+            <a href="/user/profile.html?id={{content.User.idNumber}}" class="ml-auto mr-2">
+              <span style="width: 30px;height:30px;overflow: hidden;border-radius: 50px;display: inline-block;">
+                <img src="{{content.User.thumbnail}}" alt="user" style="width:100%" class="img-circle">
+              </span>
+            </a>
+            <p class="h6 m-0">{{content.User.id}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-body text-left">
+        <h5 class="card-title">{{content.title}}</h5>
+        <p class="card-text thumb-dt-cardtext">{{content.description}}</p>
+      </div>
+      <div class="card-footer text-muted d-flex justify-content-between align-contents-center">
+        {{content.createdAt}}
+        <div>
+          <p class="btn badge bg-dark fw-l stars" data-path="/component/thumb/stars?flag=0&amp;id={{content.idNumber}}"
+            style="color:#fff">STARS</p>
+
+          <span>{{content.stars}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(".stars").on("click", async (e) => {
+    var path = $(e.target).data("path")
+    const url = "http://localhost:3000" + path
+    await axios.get(url);
+
+    const count = parseInt($(e.target).siblings().html())
+    if (path.indexOf("flag=0") >= 0) {
+      path = path.replace("flag=0", "flag=1")
+      $(e.target).siblings().html(count + 1)
+    } else {
+      path = path.replace("flag=1", "flag=0")
+      $(e.target).siblings().html(count - 1)
+    }
+    $(e.target).data("path", path)
+  })
+</script>

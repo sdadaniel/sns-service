@@ -1,0 +1,27 @@
+.thumb-common .card {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.thumb-common:hover .card {
+  border: 1px solid #ccc;
+}
+
+.thumb-small .thumb-sm-overtext {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
+.thumb-small .thumb-sm-cardtext {
+  max-height: 90px;
+  white-space: break-spaces;
+}
+
+.thumb-detail .thumb-dt-cardtext {
+  white-space: break-spaces;
+  font-size: 14px;
+}
+/*# sourceMappingURL=module-thumb.css.map */
