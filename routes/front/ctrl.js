@@ -1,7 +1,6 @@
-
-
 const {
-  fn_pagenation,fn_dateFormat
+  fn_pagenation,
+  fn_dateFormat
 } = require("../middlewares/fn");
 
 
@@ -20,7 +19,11 @@ exports.get = async (req, res, next) => {
     contents,
   } = await fn_pagenation(page_option)
 
-  contents = fn_dateFormat(contents,"fullDate")
+
+
+  if (contents.length > 0) {
+    contents = fn_dateFormat(contents, "fullDate")
+  }
 
   res.render("index.html", {
     contents,

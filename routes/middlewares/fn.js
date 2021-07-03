@@ -15,7 +15,6 @@ exports.fn_pagenation = async (page_option) => {
   const index_unit = page_option.index_unit || 10;
   const dataURL = page_option.dataURL;
   const countURL = page_option.countURL;
-  const date_format = page_option.dateFormat;
 
   var contents = await axios({
     method: "get",
@@ -55,9 +54,8 @@ exports.fn_pagenation = async (page_option) => {
 }
 
 exports.fn_dateFormat = (contents, date_format) => {
-// @content: must be an Array
-// @date_format: find more options ->(https://www.npmjs.com/package/dateformat)
-
+  // @content: must be an Array
+  // @date_format: find more options ->(https://www.npmjs.com/package/dateformat)
   contents.map(item => {
     item.updatedAt = dateFormat(Date.parse(item.updatedAt), date_format)
     item.createdAt = dateFormat(Date.parse(item.createdAt), date_format)

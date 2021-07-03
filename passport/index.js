@@ -17,7 +17,7 @@ module.exports = () => {
       if (!exUser.data) {
 
         return done(null, false, {
-          message: '존재하지 않는 회원입니다.'
+          message: 'No User.'
         })
       }
 
@@ -28,7 +28,7 @@ module.exports = () => {
         return done(null, exUser.data)
       } else {
         return done(null, false, {
-          message: "비밀번호가 일치하지 않습니다."
+          message: "Wrong Password."
         })
       }
     } catch (e) {

@@ -6,7 +6,7 @@ module.exports = (server) => {
   })
 
   io.on("connection", (socket) => {
-    console.log("클라이언트 접속")
+    console.log("client Connected")
   })
 
 }
