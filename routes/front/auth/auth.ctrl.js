@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs")
-const db = require("../../models")
+const db = require("../../../models")
 const axios = require("axios")
 exports.post_join = async (req, res, next) => {
   const {
@@ -11,7 +11,7 @@ exports.post_join = async (req, res, next) => {
     address
   } = req.body;
 
-
+  
   // 아이디중복체크
   var api_path = req.headers.origin + "/api/user/id"
   const check_id = await axios.get(api_path + "/" + id);

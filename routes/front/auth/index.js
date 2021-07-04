@@ -2,7 +2,7 @@ const passport = require('passport');
 const {
   isLoggedIn,
   isNotLoggedIn
-} = require("../middlewares/islogin")
+} = require("../../middlewares/islogin")
 const {
   Router
 } = require('express');
@@ -33,7 +33,6 @@ router.get("/logout.html", isLoggedIn, (req, res) => {
 router.get("/join.html", isNotLoggedIn, (req, res) => {
   res.render("auth/join.html")
 })
-
 router.post("/join.html", ctrl.post_join)
 
 module.exports = router;

@@ -32,11 +32,10 @@
   </div>
 </div>
 
-
 <script>
   $(".stars").on("click", async (e) => {
     var path = $(e.target).data("path")
-    const url = "http://localhost" + path
+    const url = location.origin + path
     await axios.get(url);
 
     const count = parseInt($(e.target).siblings().html())

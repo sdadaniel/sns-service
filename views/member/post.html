@@ -14,8 +14,9 @@
         <div class="card-body">
           {{item.description}}
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-between align-items-center">
           {{item.updatedAt}}
+          <p class="btn btn-primary m-0 delete-post" data-idNumber="{{item.idNumber}}">삭제</p>
         </div>
       </div>
       {% endfor %}
@@ -39,10 +40,24 @@
     </div>
   </div>
   {% endif %}
-
-
-
 </div>
+
+<script>
+  $(".delete-post").on("click", (e) => {
+    var flag = confirm("Do you want delete the post?")
+    
+    if (flag) {
+      const idNumber = $('.delete-post').data().idnumber
+      axios({
+        url: location.origin + "/api/post/delete/" + idNumber,
+        method: "delete"
+      }).then((result) => {
+        alert("Successfully deleted!")
+        location.href = "/member/post.html"
+      })
+    }
+  })
+</script>
 
 
 

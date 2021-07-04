@@ -5,7 +5,6 @@ const bcrypt = require("bcryptjs");
 
 module.exports = () => {
   const authenticateUser = async (id, password, done) => {
-
     try {
       //아이디 확인
       var api_path = process.env.API_ROOT + "/user/id/";

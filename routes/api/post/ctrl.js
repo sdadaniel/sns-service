@@ -8,12 +8,19 @@ const {
 
 
 exports.post_write = async (req, res, next) => {
+
   const {
     category,
     title,
     description,
     idNumber
   } = req.body
+
+  console.log("recieded")
+  console.log("recieded")
+  console.log("recieded")
+  console.log("recieded")
+  console.log("recieded")
 
   try {
     await db.Post.create({
@@ -22,11 +29,11 @@ exports.post_write = async (req, res, next) => {
       description,
       UserIdNumber: idNumber,
     })
-    return res.text()
+    return res.send("")
   } catch (e) {
     return res.status(500).json({
       code: 500,
-      message: "Error"
+      message: e.message
     })
   }
 }
@@ -51,7 +58,7 @@ exports.get = async (req, res, next) => {
     res.send(contents)
   } catch (e) {
     return res.status(500).json({
-      code: 500,
+      code: 501,
       message: "Error"
     })
   }
@@ -186,6 +193,23 @@ exports.get_detail = async (req, res, next) => {
     return res.status(500).json({
       code: 500,
       message: "Error"
+    })
+
+  }
+}
+
+exports.delete__delete = async (req, res) => {
+  try {
+    await db.Post.destroy({
+      where: {
+        idNumber: req.params.idNumber
+      }
+    })
+    return res.send("")
+  } catch (e) {
+    return res.status(500).json({
+      code: 500,
+      message: e.message
     })
 
   }

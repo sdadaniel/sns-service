@@ -4,7 +4,6 @@ const {
 const router = Router();
 
 const api = require("./api")
-const auth = require("./auth")
 const front = require("./front")
 
 
@@ -14,7 +13,6 @@ router.use((req, res, next) => {
 })
 
 router.use("/api", api)
-router.use("/auth", auth)
 router.use('/', front);
 
 

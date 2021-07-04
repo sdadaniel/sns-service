@@ -25,15 +25,16 @@ class App {
     this.getRouteing();
     this.errorHandling();
   }
-
+  //Mysql Connection
+  //Setting: /.env
   dbconnection() {
     sequelize.sync({
         force: false
       })
       .then(() => {
-        console.log("db연결 성공");
+        console.log("db Connected");
       }).catch((err) => {
-        console.log("db연결 실패했습니다.");
+        console.log("db connection failed");
       });
   }
 
@@ -82,7 +83,7 @@ class App {
 
   errorHandling() {
     this.app.use((req, res, next) => {
-      var e = new Error("없는페이지")
+      var e = new Error()
       e.status = 404;
       next(e)
     })

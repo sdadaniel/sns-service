@@ -36,22 +36,24 @@ exports.get_post = async (req, res) => {
 }
 
 exports.post_post = async (req, res, next) => {
-  const data = {
-    category: req.body.category,
-    title: req.body.title,
-    description: req.body.description,
-    id: req.user.id,
-    idNumber: req.user.idNumber
-  }
+
   try {
-    var url = process.env.API_ROOT + "/post/write"
+    const data = {
+      category: req.body.category,
+      title: req.body.title,
+      description: req.body.description,
+      id: req.user.id,
+      idNumber: req.user.idNumber
+    }
+
+    const url = process.env.API_ROOT + "/post/write"
+    
     await axios({
       method: "post",
       url,
       data
-    }).then(() => {
-      res.redirect("/member/post.html")
     })
+    res.redirect("/member/post.html")
   } catch (e) {
     next(e)
   }

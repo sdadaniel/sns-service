@@ -12,6 +12,9 @@ router.get("/read/:userIdNumber", ctrl.get_read_id)
 router.get("/search/:keyword", ctrl.get_search_keyword)
 router.get("/search/count/:keyword", ctrl.get_search_count_keyword)
 
+router.delete("/delete/:idNumber", ctrl.delete__delete)
+
+
 
 
 
