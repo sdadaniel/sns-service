@@ -41,7 +41,7 @@
 <script>
   $(".stars").on("click", async (e) => {
     var path = $(e.target).data("path")
-    const url = "http://localhost:3000" + path
+    const url = "http://localhost" + path
     await axios.get(url);
 
     const count = parseInt($(e.target).siblings().html())

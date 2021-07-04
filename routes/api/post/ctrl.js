@@ -15,10 +15,6 @@ exports.post_write = async (req, res, next) => {
     idNumber
   } = req.body
 
-  console.log(description);
-  console.log("-----------")
-  console.log(description.replace("\n", "<br>"));
-
   try {
     await db.Post.create({
       title,
@@ -28,7 +24,10 @@ exports.post_write = async (req, res, next) => {
     })
     return res.text()
   } catch (e) {
-    next(e)
+    return res.status(500).json({
+      code: 500,
+      message: "Error"
+    })
   }
 }
 
@@ -51,19 +50,29 @@ exports.get = async (req, res, next) => {
     })
     res.send(contents)
   } catch (e) {
-    next(e)
+    return res.status(500).json({
+      code: 500,
+      message: "Error"
+    })
   }
 }
 exports.get_list_id = async (req, res, next) => {
   const userIdNumber = req.params.userIdNumber;
 
-  const data = await db.Post.findAll({
-    where: {
-      userIdNumber,
-    },
-    attributes: ["idNumber", "title", "category"]
-  })
-  res.send(data)
+  try {
+    const data = await db.Post.findAll({
+      where: {
+        userIdNumber,
+      },
+      attributes: ["idNumber", "title", "category"]
+    })
+    res.send(data)
+  } catch (e) {
+    return res.status(500).json({
+      code: 500,
+      message: "Error"
+    })
+  }
 }
 
 
@@ -82,75 +91,102 @@ exports.get_read_id = async (req, res, next) => {
     res.send(contents)
 
   } catch (e) {
-    next(e)
+    return res.status(500).json({
+      code: 500,
+      message: "Error"
+    })
   }
 }
 
 exports.get_count = async (req, res, next) => {
-  db.Post.findAll({
+  try {
+    const result = await db.Post.findAll({
       attributes: [
         [sequelize.fn('COUNT', sequelize.col('*')), 'total']
       ]
     })
-    .then(result => {
-      res.send(result[0])
+    res.send(result[0])
+  } catch (e) {
+    return res.status(500).json({
+      code: 500,
+      message: "Error"
     })
-    .catch(e => {
-      res.json("에러")
-    })
+  }
 }
 
 exports.get_search_keyword = async (req, res, next) => {
   const keyword = decodeURIComponent(req.params.keyword)
-  var result = await db.Post.findAll({
-    where: {
-      [Op.or]: [{
-        title: {
-          [Op.regexp]: `${keyword}`
-        }
-      }, {
-        description: {
-          [Op.regexp]: `${keyword}`
-        }
-      }]
-    }
-  })
-  res.send(result)
+  try {
+    var result = await db.Post.findAll({
+      where: {
+        [Op.or]: [{
+          title: {
+            [Op.regexp]: `${keyword}`
+          }
+        }, {
+          description: {
+            [Op.regexp]: `${keyword}`
+          }
+        }]
+      }
+    })
+    res.send(result)
+  } catch (e) {
+    return res.status(500).json({
+      code: 500,
+      message: "Error"
+    })
+  }
 }
 
 exports.get_search_count_keyword = async (req, res, next) => {
   const keyword = decodeURIComponent(req.params.keyword)
-  var result = await db.Post.findAll({
-    where: {
-      [Op.or]: [{
-        title: {
-          [Op.regexp]: `${keyword}`
-        }
-      }, {
-        description: {
-          [Op.regexp]: `${keyword}`
-        }
-      }]
-    },
-    attributes: [
-      [sequelize.fn('COUNT', sequelize.col('*')), 'total']
-    ]
-  })
-  res.send(result[0])
+  try {
+    var result = await db.Post.findAll({
+      where: {
+        [Op.or]: [{
+          title: {
+            [Op.regexp]: `${keyword}`
+          }
+        }, {
+          description: {
+            [Op.regexp]: `${keyword}`
+          }
+        }]
+      },
+      attributes: [
+        [sequelize.fn('COUNT', sequelize.col('*')), 'total']
+      ]
+    })
+    res.send(result[0])
+  } catch (e) {
+    return res.status(500).json({
+      code: 500,
+      message: "Error"
+    })
+  }
+
 }
 
 exports.get_detail = async (req, res, next) => {
 
+  try {
+    var result = await db.Post.findOne({
+      where: {
+        idNumber: req.query.id
+      },
+      include: [{
+        model: db.User,
+        attributes: ["id", "thumbnail", "idNumber"]
+      }],
 
-  var result = await db.Post.findOne({
-    where: {
-      idNumber: req.query.id
-    },
-    include: [{
-      model: db.User,
-      attributes: ["id", "thumbnail", "idNumber"]
-    }],
+    })
+    res.send(result)
+  } catch (e) {
+    return res.status(500).json({
+      code: 500,
+      message: "Error"
+    })
 
-  })
-  res.send(result)
+  }
 }

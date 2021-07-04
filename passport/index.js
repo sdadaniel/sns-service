@@ -2,20 +2,15 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const axios = require("axios");
 const bcrypt = require("bcrypt");
-const app = require("../app")
-
 
 module.exports = () => {
-
   const authenticateUser = async (id, password, done) => {
 
     try {
       //아이디 확인
-      var api_path = `http://localhost:3000` + "/api/user/id/";
+      var api_path = process.env.API_ROOT + "/user/id/";
       const exUser = await axios.get(api_path + id);
-      console.log(exUser.data)
       if (!exUser.data) {
-
         return done(null, false, {
           message: 'No User.'
         })

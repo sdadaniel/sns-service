@@ -102,7 +102,6 @@
         {% include "layout/components/components/messenger_list.html" %}
         {% include "layout/components/components/chatting.html" %}
 
-        <script src="/socket.io/socket.io.js"></script>
         <script>
           $(".search-button").on("click", () => {
             if ($("#search-input").val().trim() == "") {
@@ -113,7 +112,7 @@
           })
           // $(document).ready(() => {
           //   socket_connection()
-            
+
           //   messenger_toogle()
           // })
 

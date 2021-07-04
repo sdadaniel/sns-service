@@ -3,7 +3,6 @@ const {
   fn_dateFormat
 } = require("../middlewares/fn");
 
-
 exports.get = async (req, res, next) => {
   const page_option = {
     req,
@@ -18,7 +17,6 @@ exports.get = async (req, res, next) => {
     pagenation,
     contents,
   } = await fn_pagenation(page_option)
-
 
 
   if (contents.length > 0) {

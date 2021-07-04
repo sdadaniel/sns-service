@@ -1,9 +1,9 @@
 {% extends 'layout/post_layout.html' %}
 {% block body %}
 
-
 {% include "member/components/sidebar.html" %}
 <div class="container ">
+  {% if contents[0] %}
   <div class="row justify-content-center py-5">
     <div class="col-md-8">
       {% for item in contents %}
@@ -20,5 +20,31 @@
       </div>
       {% endfor %}
     </div>
-    
-    {% endblock %}
+  </div>
+  {% else %}
+  <div class="row justify-content-center py-5">
+    <div class="col-md-8">
+      <div class="card  mb-3">
+        <div class="card-header">
+          <p>No Post</p>
+        </div>
+        <div class="card-body">
+          <p>Go To <a href="/member/post/write.html">Write</a> Page to make Post </p>
+        </div>
+        <div class="card-footer">
+          <a href="/member/post/write.html" class="btn btn-primary">Write</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+
+
+
+</div>
+
+
+
+
+{% endblock %}

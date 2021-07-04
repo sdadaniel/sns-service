@@ -12,7 +12,6 @@ const user_include_option = [{
   attributes: ["idNumber", "id"]
 }]
 
-
 exports.get_id = async (req, res) => {
 
   const options = {
@@ -31,11 +30,9 @@ exports.get_ids = async (req, res) => {
       [Op.or]: req.body
     }
   }
-
   const result = await db.User.findAll({
     where: options,
   })
-
   res.send(result);
 }
 

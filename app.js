@@ -66,7 +66,9 @@ class App {
       resave: false,
       saveUninitialized: 0,
       secret: process.env.COOKIE_SECRET,
-      store: new RedisStore({client:redisClient})
+      store: new RedisStore({
+        client: redisClient
+      })
     }));
 
     this.app.use(passport.initialize());
