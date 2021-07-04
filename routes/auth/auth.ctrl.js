@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 const db = require("../../models")
 const axios = require("axios")
 exports.post_join = async (req, res, next) => {
