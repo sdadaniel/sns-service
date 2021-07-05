@@ -24,9 +24,7 @@ ___
 
 URL: http://ec2-13-124-118-212.ap-northeast-2.compute.amazonaws.com
 
-<img width="40%" src = "https://user-images.githubusercontent.com/54664264/124418102-a56a3a00-dd95-11eb-9358-8d2a3f908f0c.png">
-<img width="40%" src = "https://user-images.githubusercontent.com/54664264/124418149-c92d8000-dd95-11eb-8b06-9805ae41435f.png">
-<img width="40%" src = "https://user-images.githubusercontent.com/54664264/124418227-f8dc8800-dd95-11eb-846e-96e6f21c7cad.png">
+![img]("https://user-images.githubusercontent.com/54664264/124418102-a56a3a00-dd95-11eb-9358-8d2a3f908f0c.png")
 
 
 <br>
