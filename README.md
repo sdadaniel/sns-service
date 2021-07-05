@@ -12,10 +12,11 @@ ___
 ### **Intro** <a id="Intro"></a>
 ___
 > This is personal project with `nodejs` that has sns functions below.
-* Login
+* Login (passport)
 * Follow/UnFollow
-* Post
-* Profile
+* Post / stars
+* Profile (edit/upload user img)
+* Search Post
 
 <br>
 
