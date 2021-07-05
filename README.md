@@ -25,7 +25,7 @@ ___
 
 *Backend* :  nodejs
 
-*Front* : HTML, CSS, SCSS, Bootstrap, Jquery
+*Front* : HTML, CSS, SCSS, Bootstrap, Jquery, nunjucks
 
 *DB* : Mysql(sequelize), Redis
 
