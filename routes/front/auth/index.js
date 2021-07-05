@@ -10,7 +10,7 @@ const router = Router();
 const ctrl = require("./auth.ctrl")
 
 
-//로그인
+// Login
 router.get("/login.html", isNotLoggedIn, (req, res) => {
   res.render("auth/login.html")
 })
@@ -21,7 +21,7 @@ router.post('/login.html', isNotLoggedIn, passport.authenticate("local", {
   failureFlash: true
 }))
 
-//로그아웃
+// Logout
 router.get("/logout.html", isLoggedIn, (req, res) => {
   req.logout();
   req.session.destroy();
@@ -29,7 +29,7 @@ router.get("/logout.html", isLoggedIn, (req, res) => {
 })
 
 
-//회원가입
+// Join
 router.get("/join.html", isNotLoggedIn, (req, res) => {
   res.render("auth/join.html")
 })

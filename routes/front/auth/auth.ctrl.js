@@ -12,7 +12,7 @@ exports.post_join = async (req, res, next) => {
   } = req.body;
 
   
-  // 아이디중복체크
+  // check Id duplicate
   var api_path = req.headers.origin + "/api/user/id"
   const check_id = await axios.get(api_path + "/" + id);
 
@@ -22,7 +22,7 @@ exports.post_join = async (req, res, next) => {
 
 
 
-  // 이메일 중복체크
+  // check email
   var api_path = req.headers.origin + "/api/user/email"
   const check_email = await axios.get(api_path + "/" + email);
   if (check_email.data) {
@@ -30,8 +30,7 @@ exports.post_join = async (req, res, next) => {
   }
 
 
-  // 비밀번호 일치 확인
-
+  // check password
   if (password == "") {
     return res.redirect("/auth/join.html?error=비밀번호를 입력해주세요.")
   }
@@ -42,8 +41,7 @@ exports.post_join = async (req, res, next) => {
   }
 
 
-  // 유저 등록
-
+  // create User
   try {
     var api_path = req.headers.origin + "/api/user/create";
     const hashedPassword = await bcrypt.hash(password, 10);

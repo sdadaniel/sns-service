@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 module.exports = () => {
   const authenticateUser = async (id, password, done) => {
     try {
-      //아이디 확인
+      //Check User width ID
       var api_path = process.env.API_ROOT + "/user/id/";
       const exUser = await axios.get(api_path + id);
       if (!exUser.data) {
@@ -15,7 +15,7 @@ module.exports = () => {
         })
       }
 
-      //비밀번호 확인
+      // Check Password
       const check_password = await bcrypt.compare(password, exUser.data.password)
       console.log(check_password)
       if (check_password) {
@@ -26,7 +26,6 @@ module.exports = () => {
         })
       }
     } catch (e) {
-      console.error(e);
       done(e)
     }
   }
@@ -36,7 +35,6 @@ module.exports = () => {
   }, authenticateUser))
   passport.serializeUser((user, done) => done(null, user.id))
   passport.deserializeUser(async (id, done) => {
-
     var api_path = process.env.API_ROOT + "/user/id/";
     const exUser = await axios.get(api_path + id);
     return done(null, exUser.data)

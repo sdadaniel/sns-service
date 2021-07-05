@@ -13,7 +13,6 @@ const user_include_option = [{
 }]
 
 exports.get_id = async (req, res) => {
-
   const options = {
     id: req.params.id
   }

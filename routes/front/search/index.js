@@ -8,6 +8,8 @@ const {
 } = require("../../middlewares/fn")
 
 router.get("/", async (req, res) => {
+
+  //option for pagenation
   const page_option = {
     req,
     page: 1,

@@ -8,8 +8,7 @@ const fs = require("fs")
 const path = require("path");
 
 
-
-//multer setting
+//Multer setting for edit profile img
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, cb) {
@@ -21,9 +20,9 @@ const upload = multer({
       cb(null, filename + ext)
     }
   }),
-  // limits: {
-  //   fileSize: 5 * 1024 * 1024
-  // }
+  limits: {
+    fileSize: 5 * 1024 * 1024
+  }
 })
 
 try {
@@ -35,7 +34,7 @@ try {
 }
 
 
-// 마이페이지
+// mypage
 router.get("/mypage.html", (req, res) => {
   res.render("member/mypage.html")
 })
@@ -45,12 +44,10 @@ router.get("/mypage_edit.html", async (req, res) => {
 })
 router.post("/mypage_edit.html", upload.single("thumbnail"), ctrl.post_mypage_edit)
 
-// 포스팅페이지
+// post
 router.get("/post.html", ctrl.get_post)
 router.post("/post.html", ctrl.post_post)
-
 router.get("/post/write.html", ctrl.get_write)
-
 router.get("/post/detail.html/:idNumber", ctrl.get_detail)
 
 

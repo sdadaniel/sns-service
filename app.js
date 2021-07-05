@@ -12,7 +12,6 @@ const passportConfig = require("./passport");
 const redis = require("redis")
 const RedisStore = require("connect-redis")(session)
 
-/* 로그인 예제 */
 const {
   sequelize
 } = require("./models");
@@ -21,12 +20,14 @@ class App {
   constructor() {
     this.app = express();
     this.middleWare();
+
+    //Mysql Connection
     this.dbconnection();
     this.getRouteing();
     this.errorHandling();
   }
-  //Mysql Connection
-  //Setting: /.env
+
+  
   dbconnection() {
     sequelize.sync({
         force: false

@@ -1,35 +1,23 @@
-const { default: axios } = require('axios');
 const {
   Router
 } = require('express');
-const db = require('../../../models');
 const router = Router();
 const ctrl = require("./ctrl")
 
-//조회
+//Read User
 router.get("/ids", ctrl.get_ids)
 router.get("/id/:id", ctrl.get_id)
 router.get("/email/:email", ctrl.get_email)
 router.get("/idnumber/:idnumber", ctrl.get_idNumber)
 router.get("/followings", ctrl.get_followings)
-// router.post("/chatting", async (req, res) => {
 
-//   const targetId = req.body.targetId
-//   const user = req.user.idNumber
-
-//   console.log(user, targetId)
-  
-//   const targetIdNumber = await axios.get(process.env.API_ROOT+"/user/id/"+targetId)
-//   console.log(targetIdNumber.data.idNumber)
-//   res.send("aa")
-
-// })
-//생성
+//Create User
 router.post("/create", ctrl.post_create)
 
-//수정
+//Edit User
 router.post("/edit", ctrl.post_edit)
 
+// Async functions from front web side
 router.post("/follower", ctrl.post_follower)
 router.post("/unfollower", ctrl.post_unfollower)
 

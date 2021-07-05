@@ -10,7 +10,6 @@ const {
 
 
 router.use("/detail", async (req, res, next) => {
-
   let url = process.env.API_ROOT + `/post/detail?id=${req.query.id}`
   await axios.get(url)
     .then(result => {
@@ -22,10 +21,6 @@ router.use("/detail", async (req, res, next) => {
     .catch(e => {
       next(e)
     })
-
-
-
-
 })
 
 module.exports = router;
