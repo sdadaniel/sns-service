@@ -24,4 +24,5 @@ router.use("/component",component)
 router.get("/", ctrl.get)
 
 
+
 module.exports = router;
