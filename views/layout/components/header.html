@@ -21,22 +21,41 @@
       color: rgb(233, 233, 233);
     }
   </style>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
     <div class="container-fluid position-relative">
+      <!--Brand Logo -->
       <a class="navbar-brand" style="filter: brightness(0) invert(1);" href="/"><img src="/img/logo.png" alt=""></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+
+
+
+      <!--Collapse Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      {# <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div> #}
+
+
+      <!--Nav Item -->
       <div class="collapse navbar-collapse align-items-center" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+        <!--Left Nav items -->
+        <ul class="navbar-nav me-auto  mb-md-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
         </ul>
+
+        <!--Center Nav items -->
         <ul class="navbar-nav search-bar position-absolute" style="left:50%;transform: translateX(-50%);">
-          <li class="nav-item">
+          <li class="nav-item collapse-d-none">
             <form class="input-group mb-0" id="search" method="get" action="/search">
               <input type="search" class="form-control rounded search " id="search-input" name="keyword"
                 placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
@@ -52,8 +71,9 @@
           </li>
         </ul>
 
-        {% if not user %}
+        <!--Right Nav items -->
 
+        {% if not user %}
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/auth/login.html">Login</a>
@@ -63,7 +83,7 @@
           </li>
         </ul>
         {% else %}
-        <div class="d-flex ml-auto align-items-center">
+        <div class="d-flex ml-auto align-items-center collapse-d-none">
           <a href="/member/mypage.html" class="ml-auto mr-2">
             <span style="width: 30px;height:30px;overflow: hidden;border-radius: 50px;display: inline-block;">
               <img src="{{user.thumbnail}}" alt="user" style="width:100%" class="img-circle">
@@ -75,10 +95,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/member/post.html">Post</a>
           </li>
-          <li class="nav-item position-relative" id="msg">
+          {# <li class="nav-item position-relative" id="msg">
             <a class="nav-link" href="#">Message</a>
-
-          </li>
+          </li> #}
           <li class="nav-item">
             <a class="nav-link" href="/member/mypage.html">Mypage</a>
           </li>
@@ -87,81 +106,17 @@
           </li>
         </ul>
         {% endif%}
-
-        {% include "layout/components/components/messenger_list.html" %}
-        {% include "layout/components/components/chatting.html" %}
-
-        <script>
-          $(".search-button").on("click", () => {
-            if ($("#search-input").val().trim() == "") {
-              alert("검색어를 입력해주세요")
-            } else {
-              $("#search").submit()
-            }
-          })
-          // $(document).ready(() => {
-          //   socket_connection()
-
-          //   messenger_toogle()
-          // })
-
-          // const socket_connection = () => {
-          //   const socket = io.connect("http://localhost:3000", {
-          //     path: `/socket.io`
-          //   });
-
-          // }
-
-
-
-          // const messenger_toogle = () => {
-          //   $("#msg").bind("click", async function (e) {
-          //     !$(".messenger_list").hasClass("get-msg") && await get_list()
-          //     $(".messenger_list").toggle()
-          //   });
-
-          //   const get_list = async function () {
-          //     $(".messenger_list").addClass("get-msg")
-          //     var url = "http://localhost:3000/api" + "/user/followings";
-          //     const result = await axios.get(url)
-
-          //     for (i = 0; i < result.data.length; i++) {
-          //       $msgItem = $("<div class='pl-0 pb-2  mb-2 d-flex align-items-center msg-item btn'>");
-          //       $thumbnailBox = $("<div class='mr-2 thumbnail-box'>")
-          //       $thumbnailBox.prepend(`<img src=${result.data[i].thumbnail} alt='thumbnail' class='img-circle'>`)
-          //       $id = $(`<span class='text-white'>${result.data[i].id}</span>`)
-          //       $msgItem.prepend($id)
-          //       $msgItem.prepend($thumbnailBox)
-          //       $(".msg-list").prepend($msgItem)
-          //     }
-
-          //     $(".messenger_list .msg-item").on("click", async (e) => {
-          //       $(".messenger_list").toggle()
-
-
-          //       const url = "http://localhost:3000/api/user/chatting";
-          //       const method = "post"
-          //       const data = {
-          //         targetId: $(e.target.closest(".msg-item")).text()
-          //       }
-          //       console.log(data)
-
-          //       const result = await axios({
-          //         url,
-          //         method,
-          //         data
-          //       })
-          //       console.log(result.data)
-
-          //       $(".chatting").toggle()
-          //     })
-
-          //   }
-
-
-          // }
-        </script>
       </div>
     </div>
   </nav>
+
+  <script>
+    $(".search-button").on("click", () => {
+      if ($("#search-input").val().trim() == "") {
+        alert("검색어를 입력해주세요")
+      } else {
+        $("#search").submit()
+      }
+    })
+  </script>
 </header>
